@@ -1,11 +1,33 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
 )
+
+type TaobaoData struct {
+	Ip string `json:"ip"`
+	Country string `json:"country"`
+	Area string `json:"area"`
+	Region string `json:"region"`
+	City string `json:"city"`
+	County string `json:"county"`
+	Isp string `json:"isp"`
+	Country_id string `json:"country_id"`
+	Area_id string `json:"area_id"`
+	Region_id string `json:"region_id"`
+	City_id string `json:"city_id"`
+	County_id string `json:"county_id"`
+	Isp_id string `json:"isp_id"`
+}
+
+type TaobaoIp struct {
+	Data TaobaoData `json:"data"`
+	code           int32       `json:"code"`
+}
 
 func main() {
 	/*
@@ -50,4 +72,10 @@ func main() {
 		return
 	}
 	fmt.Println(string(data))
+	var ipdata TaobaoIp
+	if err := json.Unmarshal(data, &ipdata); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Printf("ipapiip;%+v\n", ipdata)
+	}
 }
