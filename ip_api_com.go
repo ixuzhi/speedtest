@@ -70,6 +70,6 @@ func main() {
 	if err := json.Unmarshal(data, &ipdata); err != nil {
 		fmt.Println(err)
 	} else {
-		fmt.Printf("ipapiip;%+v\n", ipdata)
+		fmt.Printf("IpApiIp;%+v\n", ipdata)
 	}
 }
