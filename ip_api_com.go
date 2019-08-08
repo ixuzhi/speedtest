@@ -66,10 +66,10 @@ func main() {
 		return
 	}
 	fmt.Println(string(data))
-	var ipapiip IpApiIp
-	if err := json.Unmarshal(data, &ipapiip); err != nil {
+	var ipdata IpApiIp
+	if err := json.Unmarshal(data, &ipdata); err != nil {
 		fmt.Println(err)
 	} else {
-		fmt.Printf("ipapiip;%+v\n", ipapiip)
+		fmt.Printf("ipapiip;%+v\n", ipdata)
 	}
 }
