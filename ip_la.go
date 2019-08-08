@@ -1,11 +1,26 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
 )
+
+type IpLaLocation struct {
+	City         string `json:"city"`
+	Country_code string `json:"country_code"`
+	Country_name string `json:"country_name"`
+	Latitude     string `json:"latitude"`
+	Longitude    string `json:"longitude"`
+	Province     string `json:"province"`
+}
+
+type IpLaIp struct {
+	Iplalocation IpLaLocation `json:"location"`
+	Ip           string       `json:"ip"`
+}
 
 func main() {
 	/*
@@ -43,4 +58,10 @@ func main() {
 		return
 	}
 	fmt.Println(string(data))
+	var iplaip IpLaIp
+	if err := json.Unmarshal(data, &iplaip); err != nil {
+
+	} else {
+		fmt.Printf("iplaip;%+v\n", iplaip)
+	}
 }
