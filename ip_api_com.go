@@ -1,11 +1,29 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
 )
+
+type IpApiIp struct {
+	As          string  `json:"as"`
+	City        string  `json:"City"`
+	Country     string  `json:"country"`
+	CountryCode string  `json:"countryCode"`
+	Isp         string  `json:"isp"`
+	Lat         float64 `json:"lat"`
+	Lon         float64 `json:"lon"`
+	Org         string  `json:"org"`
+	Query       string  `json:"query"`
+	Region      string  `json:"region"`
+	RegionName  string  `json:"regionName"`
+	Status      string  `json:"status"`
+	Timezone    string  `json:"timezone"`
+	Zip         string  `json:"zip"`
+}
 
 func main() {
 	/*
@@ -48,4 +66,10 @@ func main() {
 		return
 	}
 	fmt.Println(string(data))
+	var ipapiip IpApiIp
+	if err := json.Unmarshal(data, &ipapiip); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Printf("ipapiip;%+v\n", ipapiip)
+	}
 }
