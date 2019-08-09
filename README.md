@@ -1,5 +1,4 @@
-# speedtest
-
+# speedtest :[![Build Status](https://circleci.com/gh/ixuzhi/speedtest.svg?style=svg)](https://circleci.com/gh/ixuzhi/speedtest)
 
 ## how to calculate network speed?
 
