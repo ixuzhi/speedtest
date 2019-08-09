@@ -85,6 +85,9 @@ func main() {
 		return
 	} else {
 		fmt.Println(len(ServersInfo.Servers))
+		for k, v := range ServersInfo.Servers {
+			fmt.Printf("%d,%+v\n", k, v)
+		}
 	}
 
 }
