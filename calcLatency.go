@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	//var timeout int32 = 5
+	var timeout =time.Duration(time.Second*30)
 	var servers = []string{
 		"speedtest2.hb.chinamobile.com:8080",
 		"vipspeedtest1.wuhan.net.cn:8080",
@@ -22,13 +22,14 @@ func main() {
 	}
 
 	for _, serverHost := range servers {
-		addr, err := net.ResolveTCPAddr("tcp", serverHost)
-		if err != nil {
-			fmt.Printf("%s\n", err.Error())
-			continue
-		}
+		//addr, err := net.ResolveTCPAddr("tcp", serverHost)
+		//if err != nil {
+		//	fmt.Printf("%s\n", err.Error())
+		//	continue
+		//}
 
-		conn, err := net.DialTCP("tcp", nil, addr)
+		//conn, err := net.DialTCP("tcp", nil, addr)
+		conn,err:=net.DialTimeout("tcp",serverHost,timeout)
 		//conn, err := net.DialTimeout("tcp", server.speedtest.Source, addr, timeout)
 		if err != nil {
 			fmt.Printf("%s\n", err.Error())

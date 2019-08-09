@@ -1,7 +1,6 @@
 https://github.com/sivel/go-speedtest/blob/master/speedtest.go#L363  
 
 ## how to select speedtest server，calc latency
-
 ```
 1. select speedtest server by https://www.speedtest.net/speedtest-servers.php
    get the host field,get the tcpaddr
@@ -13,4 +12,4 @@ https://github.com/sivel/go-speedtest/blob/master/speedtest.go#L363
     recv: "PONG 1559028780098"
     
     send and recv multi time and calc the latency from your computer to speedtest server. 
-    ```
+```
