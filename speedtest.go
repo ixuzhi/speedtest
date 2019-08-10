@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	//"github.com/ixuzhi/speedtest/speedtest"
-	"./speedtest"
+	speedtest "github.com/ixuzhi/speedtest/speedtest"
 )
 
 func main() {
