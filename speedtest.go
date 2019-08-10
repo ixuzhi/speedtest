@@ -1,22 +1,15 @@
 package main
 
-import "fmt"
-
-type ClientInfo struct {
-	ClientIP  string
-	ClientLat float64
-	ClientLon float64
-}
-
-func getIPAndLatLon() (client ClientInfo, err error) {
-	var clientInfo ClientInfo
-	return clientInfo, nil
-}
+import (
+	"fmt"
+	//"github.com/ixuzhi/speedtest/speedtest"
+	"./speedtest"
+)
 
 func main() {
-	var clientInfo ClientInfo
+	var clientInfo speedtest.ClientInfo
 	fmt.Println("speedtest init.")
-	clientInfo, err := getIPAndLatLon()
+	clientInfo, err := speedtest.GetIPAndLatLon()
 	if err != nil {
 		fmt.Println(err)
 		return
