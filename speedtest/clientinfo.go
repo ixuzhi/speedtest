@@ -1,5 +1,7 @@
 package speedtest
 
+import "errors"
+
 type ClientInfo struct {
 	ClientIP  string
 	ClientLat float64
@@ -19,5 +21,5 @@ func GetIPAndLatLon() (clientinfo ClientInfo, err error) {
 	if err == nil {
 		return clientinfo, nil
 	}
-	return
+	return clientinfo, errors.New("not find ClientInfo")
 }
