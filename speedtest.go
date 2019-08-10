@@ -15,16 +15,20 @@ func main() {
 		return
 	}
 	fmt.Printf("%+v\n", clientInfo)
-	var ServersInfo speedtest.ServerList
-	ServersInfo, err = speedtest.GetSpeedTestServersList()
+	var Servers speedtest.ServerList
+	Servers, err = speedtest.GetSpeedTestServersList()
 	if err != nil {
 		fmt.Println(err)
 		return
 	} else {
-		fmt.Println("len:", len(ServersInfo.Servers))
-		//for k,v:=range ServersInfo.Servers{
+		fmt.Println("len:", len(Servers.ServersInfo))
+		//for k,v:=range ServersInfo.ServersInfo{
 		//	fmt.Printf("%v,%+v\n",k,v)
 		//}
 	}
-
+	if len(Servers.ServersInfo) >0 {
+		Servers.GetClosestSpeedTestServers(clientInfo)
+	}else{
+		fmt.Println("len Servers.ServersInfo ==0")
+	}
 }

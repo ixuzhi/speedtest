@@ -23,19 +23,19 @@ host="speedtest.oppinord.no:8080" />
 
 //https://github.com/sivel/go-speedtest/blob/master/speedtest.go#L301
 type ServerList struct {
-	Servers []ServerInfo `xml:"servers>server"`
+	ServersInfo []ServerInfo `xml:"servers>server"`
 }
 
 type ServerInfo struct {
-	Url     string `xml:"url,attr"`
-	Lat     string `xml:"lat,attr"`
-	Lon     string `xml:"lon,attr"`
-	Name    string `xml:"name,attr"`
-	Country string `xml:"country,attr"`
-	Cc      string `xml:"cc,attr"`
-	Sponsor string `xml:"sponsor,attr"`
-	Id      string `xml:"id,attr"`
-	HostUrl string `xml:"host,attr"`
+	Url     string  `xml:"url,attr"`
+	Lat     float64 `xml:"lat,attr"`
+	Lon     float64 `xml:"lon,attr"`
+	Name    string  `xml:"name,attr"`
+	Country string  `xml:"country,attr"`
+	Cc      string  `xml:"cc,attr"`
+	Sponsor string  `xml:"sponsor,attr"`
+	Id      string  `xml:"id,attr"`
+	HostUrl string  `xml:"host,attr"`
 }
 
 func IsExist(f string) bool {
@@ -82,15 +82,30 @@ func GetSpeedTestServersList() (ServerList, error) {
 		}
 	}
 
-	//ServersInfo.Servers
+	//ServersInfo.ServersInfo
 	if err := xml.Unmarshal(data, &ServersInfo); err != nil {
 		//fmt.Println(err)
 		return ServersInfo, errors.New(err.Error())
 	} else {
-		//fmt.Println(len(ServersInfo.Servers))
-		//for k, v := range ServersInfo.Servers {
+		//fmt.Println(len(ServersInfo.ServersInfo))
+		//for k, v := range ServersInfo.ServersInfo {
 		//	fmt.Printf("%d,%+v\n", k, v)
 		//}
 		return ServersInfo, nil
+	}
+}
+
+func (servers *ServerList) GetClosestSpeedTestServers(clientinfo ClientInfo) {
+	latLon := pos{
+		φ: clientinfo.ClientLat, // latitude, radians
+		ψ: clientinfo.ClientLon, // longitude, radians
+	}
+	for k, v := range servers.ServersInfo {
+		latLonTestServer := pos{
+			φ: v.Lat, // latitude, radians
+			ψ: v.Lon, // longitude, radians
+		}
+		distance := hsDist(latLon, latLonTestServer)
+		fmt.Println(k,distance)
 	}
 }
