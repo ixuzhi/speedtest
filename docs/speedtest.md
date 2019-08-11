@@ -13,3 +13,6 @@ https://github.com/sivel/go-speedtest/blob/master/speedtest.go#L363
     
     send and recv multi time and calc the latency from your computer to speedtest server. 
 ```
+
+## how to sort by distance
+    (distance sort)[https://github.com/sivel/go-speedtest/blob/master/speedtest.go#L306]

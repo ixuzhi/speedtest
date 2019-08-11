@@ -108,7 +108,8 @@ func (servers *ServerList) GetClosestSpeedTestServers(clientinfo ClientInfo) {
 			φ: v.Lat, // latitude, radians
 			ψ: v.Lon, // longitude, radians
 		}
-		distance := hsDist(latLon, latLonTestServer)
+		distance := hsDist(degPos(clientinfo.ClientLat,clientinfo.ClientLon), degPos(latLonTestServer.φ,latLonTestServer.ψ))
+		fmt.Println(k,latLon,latLonTestServer,distance,v.HostUrl)
 		servers.ServersInfo[k].Distance = distance
 	}
 }
