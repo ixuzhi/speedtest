@@ -80,6 +80,7 @@ func GetIpTaoBaoClientInfo() (ClientInfo, error) {
 	} else {
 		fmt.Printf("TaobaoIp;%+v\n", ipdata)
 		clientinfo.ClientIP = ipdata.Data.Ip
+		clientinfo.ClientFrom = "http://ip.taobao.com/service/getIpInfo2.php?ip=myip"
 		//clientinfo.ClientLat = ipdata.Data.
 	}
 	return clientinfo, errors.New(err.Error())

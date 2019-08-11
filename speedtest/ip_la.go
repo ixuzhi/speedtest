@@ -68,6 +68,7 @@ func GetIpLaClientInfo() (ClientInfo, error) {
 		clientinfo.ClientIP = ipdata.Ip
 		clientinfo.ClientLat, err = strconv.ParseFloat(ipdata.Iplalocation.Latitude, 64)
 		clientinfo.ClientLon, err = strconv.ParseFloat(ipdata.Iplalocation.Longitude, 64)
+		clientinfo.ClientFrom = "https://api.ip.la/en?json"
 		return clientinfo, err
 	}
 }

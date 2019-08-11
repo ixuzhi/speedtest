@@ -62,6 +62,7 @@ func GetIpInfoIoClientInfo() (ClientInfo, error) {
 		if len(splitLonlat) == 2 {
 			clientinfo.ClientLat, err = strconv.ParseFloat(splitLonlat[0], 64)
 			clientinfo.ClientLon, err = strconv.ParseFloat(splitLonlat[1], 64)
+			clientinfo.ClientFrom = "http://ipinfo.io/?token=2c1be40be8a245"
 		}
 		return clientinfo, err
 	}

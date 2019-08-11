@@ -60,6 +60,7 @@ func GetSpeedTestConfigClientInfo() (ClientInfo, error) {
 		clientinfo.ClientIP = ipdata.Client.Ip
 		clientinfo.ClientLat, err = strconv.ParseFloat(ipdata.Client.Lat, 64)
 		clientinfo.ClientLon, err = strconv.ParseFloat(ipdata.Client.Lon, 64)
+		clientinfo.ClientFrom = "https://www.speedtest.net/speedtest-config.php"
 		return clientinfo, nil
 	}
 }

@@ -76,6 +76,7 @@ func GetIpApiComClientInfo() (ClientInfo, error) {
 		clientinfo.ClientIP = ipdata.Query
 		clientinfo.ClientLat = ipdata.Lat
 		clientinfo.ClientLon = ipdata.Lon
+		clientinfo.ClientFrom = "http://ip-api.com/json"
 		return clientinfo, nil
 	}
 }
