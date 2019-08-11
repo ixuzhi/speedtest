@@ -18,7 +18,7 @@ func main() {
 	var Servers speedtest.ServerList
 	Servers, err = speedtest.GetSpeedTestServersList()
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(err.Error() + "\ngetspeedserver")
 		return
 	} else {
 		fmt.Println("len:", len(Servers.ServersInfo))
@@ -26,9 +26,9 @@ func main() {
 		//	fmt.Printf("%v,%+v\n",k,v)
 		//}
 	}
-	if len(Servers.ServersInfo) >0 {
+	if len(Servers.ServersInfo) > 0 {
 		Servers.GetClosestSpeedTestServers(clientInfo)
-	}else{
+	} else {
 		fmt.Println("len Servers.ServersInfo ==0")
 	}
 }

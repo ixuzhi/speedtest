@@ -39,40 +39,42 @@ type ServerInfo struct {
 }
 
 func IsExist(f string) bool {
+	fmt.Println(f)
 	_, err := os.Stat(f)
 	return err == nil || os.IsExist(err)
 }
 func GetSpeedTestServersList() (ServerList, error) {
 	var ServersInfo ServerList
-	var FileName string = "servers.dat"
+	var FileName = "speedTestServers.dat"
 	var data []byte
 	var err error
 	if IsExist(FileName) {
 		fmt.Printf("%s exist\n", FileName)
 		data, err = ioutil.ReadFile(FileName)
 		if err != nil {
-			fmt.Println(err)
-			return ServersInfo, errors.New(err.Error())
+			//fmt.Println(err)
+			return ServersInfo, errors.New("ioutil.ReadFile:" + err.Error())
 		}
 	} else {
 		fmt.Println("not exist")
-		ipUrl := "https://www.speedtest.net/speedtest-servers.php"
+		//ipUrl := "https://www.speedtest.net/speedtest-servers.php"
+		ipUrl := "https://c.speedtest.net/speedtest-servers-static.php"
 		req, err := http.NewRequest("GET", ipUrl, nil)
 		if err != nil {
 			//fmt.Println(err)
-			return ServersInfo, errors.New(err.Error())
+			return ServersInfo, errors.New("http.NewRequest:" + err.Error())
 		}
 		client := http.Client{
-			Timeout: time.Second * 60,
+			Timeout: time.Second * 90,
 		}
 		resp, err := client.Do(req)
 		if err != nil {
 			//fmt.Println(err)
-			return ServersInfo, errors.New(err.Error())
+			return ServersInfo, errors.New("client.Do:" + err.Error())
 		}
 		defer resp.Body.Close()
 
-		data, err := ioutil.ReadAll(resp.Body)
+		data, err = ioutil.ReadAll(resp.Body)
 		if err != nil {
 			//fmt.Println(err)
 			return ServersInfo, errors.New(err.Error())
@@ -106,6 +108,6 @@ func (servers *ServerList) GetClosestSpeedTestServers(clientinfo ClientInfo) {
 			ψ: v.Lon, // longitude, radians
 		}
 		distance := hsDist(latLon, latLonTestServer)
-		fmt.Println(k,distance)
+		fmt.Println(k, distance)
 	}
 }
