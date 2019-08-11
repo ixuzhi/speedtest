@@ -34,11 +34,19 @@ func main() {
 	//for k, v := range Servers.ServersInfo[0:10] {
 	//	fmt.Printf("|%-4d|%-10.4f|%-10.4f|%-30s\n", k, v.Latency*1000, v.Distance, v.HostUrl)
 	//}
-	for _,v:=range Servers.ServersInfo[0:10] {
-		up, err := speedtest.SpeedTestHttpUpload(v.HostUrl, 25000000)
+	//for _,v:=range Servers.ServersInfo[0:10] {
+	//	up, err := speedtest.SpeedTestHttpUpload(v.HostUrl, 2500000)
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	}
+	//	fmt.Printf("up:|%-6.2f\n", up)
+	//}
+
+	for _, v := range Servers.ServersInfo[0:10] {
+		up, err := speedtest.SpeedTestHttpDownload(v.HostUrl, 2500000)
 		if err != nil {
 			fmt.Println(err)
 		}
-		fmt.Printf("up:|%-6.2f", up)
+		fmt.Printf("Download:|%-6.2f\n", up)
 	}
 }
