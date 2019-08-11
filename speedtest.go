@@ -42,11 +42,19 @@ func main() {
 	//	fmt.Printf("up:|%-6.2f\n", up)
 	//}
 
+	//for _, v := range Servers.ServersInfo[0:10] {
+	//	up, err := speedtest.SpeedTestHttpDownload(v.HostUrl, 2500000)
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	}
+	//	fmt.Printf("Download:|%-6.2f\n", up)
+	//}
+
 	for _, v := range Servers.ServersInfo[0:10] {
-		up, err := speedtest.SpeedTestHttpDownload(v.HostUrl, 2500000)
+		up, err := speedtest.SpeedTestTcpDownload(v.HostUrl, 2500000)
 		if err != nil {
 			fmt.Println(err)
 		}
-		fmt.Printf("Download:|%-6.2f\n", up)
+		fmt.Printf("Download tcp:|%-6.2f\n", up)
 	}
 }
