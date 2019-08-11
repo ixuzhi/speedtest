@@ -1,7 +1,7 @@
 | Name | CI/Travis | Description |  
 | ---------|---------|--------- |  
 | circleci | [![Build Status](https://circleci.com/gh/ixuzhi/speedtest.svg?style=svg)](https://circleci.com/gh/ixuzhi/speedtest) | circleci.com |  
-| Travis CI | [![Travis CI](https://api.travis-ci.org/ixuzhi/speedtest.svg?branch=master)](https://travis-ci.com/ipfs/go-unixfs) | travis-ci.org |
+| Travis CI | [![Travis CI](https://api.travis-ci.org/ixuzhi/speedtest.svg?branch=master)](https://travis-ci.org/ixuzhi/speedtest) | travis-ci.org |
 
 ## how to calculate network speed?
 
