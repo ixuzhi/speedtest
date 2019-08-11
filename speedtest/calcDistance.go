@@ -2,6 +2,7 @@ package speedtest
 
 import (
 	"math"
+	"sort"
 )
 
 func haversine(θ float64) float64 {
@@ -22,6 +23,12 @@ const rEarth = 6372.8 // km
 func hsDist(p1, p2 pos) float64 {
 	return 2 * rEarth * math.Asin(math.Sqrt(haversine(p2.φ-p1.φ)+
 		math.Cos(p1.φ)*math.Cos(p2.φ)*haversine(p2.ψ-p1.ψ)))
+}
+
+func (servers *ServerList) SortByDistance() {
+	sort.Slice(servers.ServersInfo, func(i, j int) bool {
+		return servers.ServersInfo[i].Distance < servers.ServersInfo[j].Distance
+	})
 }
 
 //func main() {

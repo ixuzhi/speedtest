@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	"sort"
 	"time"
 )
 
@@ -119,22 +118,4 @@ func (servers *ServerList) GetClosestSpeedTestServers(clientinfo ClientInfo) {
 	//for k, v := range servers.ServersInfo[0:10] {
 	//	fmt.Printf("22:%v,%+v,%v\n", k, v.Distance, v.HostUrl)
 	//}
-}
-
-func (servers *ServerList) SortByDistance() {
-	sort.Slice(servers.ServersInfo, func(i, j int) bool {
-		return servers.ServersInfo[i].Distance < servers.ServersInfo[j].Distance
-	})
-}
-
-func (servers *ServerList) SortByLatency() {
-	sort.Slice(servers.ServersInfo[0:10], func(i, j int) bool {
-		x := servers.ServersInfo[i].Latency
-		y := servers.ServersInfo[j].Latency
-		if x == 0 || y == 0 {
-			return false
-		} else {
-			return servers.ServersInfo[i].Latency < servers.ServersInfo[j].Latency
-		}
-	})
 }

@@ -3,6 +3,7 @@ package speedtest
 import (
 	"fmt"
 	"net"
+	"sort"
 	"time"
 )
 
@@ -41,4 +42,16 @@ func (servers *ServerList) calcLatency() {
 		//fmt.Println("latency:", latency)
 		servers.ServersInfo[k].Latency = latency.Seconds()
 	}
+}
+
+func (servers *ServerList) SortByLatency() {
+	sort.Slice(servers.ServersInfo[0:10], func(i, j int) bool {
+		x := servers.ServersInfo[i].Latency
+		y := servers.ServersInfo[j].Latency
+		if x == 0 || y == 0 {
+			return false
+		} else {
+			return servers.ServersInfo[i].Latency < servers.ServersInfo[j].Latency
+		}
+	})
 }

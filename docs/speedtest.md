@@ -1,6 +1,11 @@
 https://github.com/sivel/go-speedtest/blob/master/speedtest.go#L363  
 
+## how to select nearest speedtest server by lat and lon.
+    https://rosettacode.org/wiki/Haversine_formula
+    https://rosettacode.org/wiki/Haversine_formula#Go
+
 ## how to select speedtest server，calc latency
+
 ```
 1. select speedtest server by https://www.speedtest.net/speedtest-servers.php
    get the host field,get the tcpaddr
