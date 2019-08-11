@@ -1,4 +1,7 @@
-# speedtest :[![Build Status](https://circleci.com/gh/ixuzhi/speedtest.svg?style=svg)](https://circleci.com/gh/ixuzhi/speedtest)
+| Name | CI/Travis | Description |  
+| ---------|---------|--------- |  
+| circleci | [![Build Status](https://circleci.com/gh/ixuzhi/speedtest.svg?style=svg)](https://circleci.com/gh/ixuzhi/speedtest) | circleci.com |  
+| Travis CI | [![Travis CI](https://api.travis-ci.org/ixuzhi/speedtest.svg?branch=master)](https://travis-ci.com/ipfs/go-unixfs) | travis-ci.org |
 
 ## how to calculate network speed?
 
@@ -29,20 +32,18 @@
 ```
 
 ```go
-go run ip_taobao_com.go
-go run ip_api_com.go
-go run ip_la.go
-go run speedtest_net_speedtest_config.go
-go run speedTestServer.go
+go run v0/ip_taobao_com.go
+go run v0/ip_api_com.go
+go run v0/ip_la.go
+go run v0/speedtest_net_speedtest_config.go
+go run v0/speedTestServer.go
 
-go run calcDistanceBylonAndLat.go
-go run calcLatency.go
-go run speedtestHttpDownload.go
-go run speedtestHttpUpload.go
-
-
+go run v0/calcDistanceBylonAndLat.go
+go run v0/calcLatency.go
+go run v0/speedtestHttpDownload.go
+go run v0/speedtestHttpUpload.go
 ```
 
-(goland how to download and upload)[https://progolang.com/how-to-download-files-in-go/]  
-(speedtest download)[https://github.com/surol/speedtest-cli/blob/master/speedtest/download.go#L18]  
-(speedtest upload)[https://github.com/surol/speedtest-cli/blob/master/speedtest/upload.go#L46]  
+[goland how to download and upload](https://progolang.com/how-to-download-files-in-go/)
+[speedtest download](https://github.com/surol/speedtest-cli/blob/master/speedtest/download.go#L18)
+[speedtest upload](https://github.com/surol/speedtest-cli/blob/master/speedtest/upload.go#L46)
