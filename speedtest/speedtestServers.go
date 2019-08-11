@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"sort"
 	"time"
 )
 
@@ -108,4 +109,11 @@ func (servers *ServerList) GetClosestSpeedTestServers(clientinfo ClientInfo) {
 		//fmt.Println(k,latLon,latLonTestServer,distance,v.HostUrl)
 		servers.ServersInfo[k].Distance = distance
 	}
+	servers.SortByDistance()
+}
+
+func (servers *ServerList) SortByDistance() {
+	sort.Slice(servers.ServersInfo, func(i, j int) bool {
+		return servers.ServersInfo[i].Distance < servers.ServersInfo[j].Distance
+	})
 }

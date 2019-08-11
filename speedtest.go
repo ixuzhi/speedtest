@@ -2,10 +2,8 @@ package main
 
 import (
 	"fmt"
-	"sort"
-
 	//"github.com/ixuzhi/speedtest/speedtest"
-	speedtest "github.com/ixuzhi/speedtest/speedtest"
+	"github.com/ixuzhi/speedtest/speedtest"
 )
 
 func main() {
@@ -32,12 +30,10 @@ func main() {
 		Servers.GetClosestSpeedTestServers(clientInfo)
 	} else {
 		fmt.Println("len Servers.ServersInfo ==0")
+		return
 	}
-	sort.Slice(Servers.ServersInfo, func(i, j int) bool {
-		return Servers.ServersInfo[i].Distance < Servers.ServersInfo[j].Distance
-	})
+
 	for k, v := range Servers.ServersInfo[0:10] {
 		fmt.Printf("%v,%+v,%v\n", k, v.Distance, v.HostUrl)
 	}
-
 }
