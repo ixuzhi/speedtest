@@ -22,17 +22,23 @@ func main() {
 		return
 	} else {
 		fmt.Println("len:", len(Servers.ServersInfo))
-		//for k,v:=range ServersInfo.ServersInfo{
-		//	fmt.Printf("%v,%+v\n",k,v)
-		//}
 	}
+
 	if len(Servers.ServersInfo) > 0 {
 		Servers.GetClosestSpeedTestServers(clientInfo)
 	} else {
 		fmt.Println("len Servers.ServersInfo ==0")
 		return
 	}
-	for k, v := range Servers.ServersInfo[0:10] {
-		fmt.Printf("|%-4d|%-10.4f|%-10.4f|%-30s\n", k, v.Latency*1000, v.Distance, v.HostUrl)
+
+	//for k, v := range Servers.ServersInfo[0:10] {
+	//	fmt.Printf("|%-4d|%-10.4f|%-10.4f|%-30s\n", k, v.Latency*1000, v.Distance, v.HostUrl)
+	//}
+	for _,v:=range Servers.ServersInfo[0:10] {
+		up, err := speedtest.SpeedTestHttpUpload(v.HostUrl, 25000000)
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Printf("up:|%-6.2f", up)
 	}
 }
