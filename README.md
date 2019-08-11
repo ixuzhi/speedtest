@@ -2,6 +2,7 @@
 | ---------|---------|--------- |  
 | circleci | [![Build Status](https://circleci.com/gh/ixuzhi/speedtest.svg?style=svg)](https://circleci.com/gh/ixuzhi/speedtest) | circleci.com |  
 | Travis CI | [![Travis CI](https://api.travis-ci.org/ixuzhi/speedtest.svg?branch=master)](https://travis-ci.org/ixuzhi/speedtest) | travis-ci.org |
+| godoc |[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/ixuzhi/speedtest/speedtest)| godoc.org |
 
 ## how to calculate network speed?
 
