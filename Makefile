@@ -15,9 +15,8 @@ android:
 	PLATFORM="android" ./build.sh android
 
 linux:
-	PLATFORM="linux" ./build.sh linux
+	PLATFORM="linux" ./build.sh run_linux
 
 clean:
-	rm -rf sysup ipfs sysup_linux ipfs_linux ota.zip reboot.flag
 
 .PHONY:HELP

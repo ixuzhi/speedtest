@@ -26,5 +26,5 @@ notifications:
 
 script:
   - echo "start to build and test speedtest."
-  - make linux
+  - bash build.sh run_linux
   - echo "finish"

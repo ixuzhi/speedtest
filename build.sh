@@ -7,7 +7,7 @@ buildDate=$(date "+%Y-%m-%d-%H:%M:%S")
 commitDate=$(git show -s --format=%cd --date=format:%Y:%m:%d_%H:%M:%S)
 
 run_linux() {
-	go run -ldflags "-X main.buildBranch=$buildBranch -X  main.commitHash=$commitHash -X main.commitDate=$commitDate -X  main.buildDate=$buildDate" speedtest.go	
+	go run speedtest.go	
 }
 
 case $1 in
