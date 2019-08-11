@@ -32,8 +32,7 @@ func main() {
 		fmt.Println("len Servers.ServersInfo ==0")
 		return
 	}
-
 	for k, v := range Servers.ServersInfo[0:10] {
-		fmt.Printf("%v,%+v,%v\n", k, v.Distance, v.HostUrl)
+		fmt.Printf("|%-4d|%-10.4f|%-10.4f|%-30s\n", k, v.Latency*1000, v.Distance, v.HostUrl)
 	}
 }

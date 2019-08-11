@@ -38,6 +38,7 @@ type ServerInfo struct {
 	Id       string  `xml:"id,attr"`
 	HostUrl  string  `xml:"host,attr"`
 	Distance float64
+	Latency  float64
 }
 
 func IsExist(f string) bool {
@@ -110,10 +111,30 @@ func (servers *ServerList) GetClosestSpeedTestServers(clientinfo ClientInfo) {
 		servers.ServersInfo[k].Distance = distance
 	}
 	servers.SortByDistance()
+	//for k, v := range servers.ServersInfo[0:10] {
+	//	fmt.Printf("11:%v,%+v,%v\n", k, v.Distance, v.HostUrl)
+	//}
+	servers.calcLatency()
+	servers.SortByLatency()
+	//for k, v := range servers.ServersInfo[0:10] {
+	//	fmt.Printf("22:%v,%+v,%v\n", k, v.Distance, v.HostUrl)
+	//}
 }
 
 func (servers *ServerList) SortByDistance() {
 	sort.Slice(servers.ServersInfo, func(i, j int) bool {
 		return servers.ServersInfo[i].Distance < servers.ServersInfo[j].Distance
+	})
+}
+
+func (servers *ServerList) SortByLatency() {
+	sort.Slice(servers.ServersInfo[0:10], func(i, j int) bool {
+		x := servers.ServersInfo[i].Latency
+		y := servers.ServersInfo[j].Latency
+		if x == 0 || y == 0 {
+			return false
+		} else {
+			return servers.ServersInfo[i].Latency < servers.ServersInfo[j].Latency
+		}
 	})
 }
