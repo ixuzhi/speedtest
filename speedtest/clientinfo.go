@@ -21,5 +21,9 @@ func GetIPAndLatLon() (clientinfo ClientInfo, err error) {
 	if err == nil {
 		return clientinfo, nil
 	}
+	clientinfo, err =GetIpInfoIoClientInfo()
+	if err == nil {
+		return clientinfo, nil
+	}
 	return clientinfo, errors.New("not find ClientInfo")
 }
