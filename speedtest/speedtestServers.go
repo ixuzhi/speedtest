@@ -99,17 +99,13 @@ func GetSpeedTestServersList() (ServerList, error) {
 }
 
 func (servers *ServerList) GetClosestSpeedTestServers(clientinfo ClientInfo) {
-	latLon := pos{
-		φ: clientinfo.ClientLat, // latitude, radians
-		ψ: clientinfo.ClientLon, // longitude, radians
-	}
 	for k, v := range servers.ServersInfo {
 		latLonTestServer := pos{
 			φ: v.Lat, // latitude, radians
 			ψ: v.Lon, // longitude, radians
 		}
-		distance := hsDist(degPos(clientinfo.ClientLat,clientinfo.ClientLon), degPos(latLonTestServer.φ,latLonTestServer.ψ))
-		fmt.Println(k,latLon,latLonTestServer,distance,v.HostUrl)
+		distance := hsDist(degPos(clientinfo.ClientLat, clientinfo.ClientLon), degPos(latLonTestServer.φ, latLonTestServer.ψ))
+		//fmt.Println(k,latLon,latLonTestServer,distance,v.HostUrl)
 		servers.ServersInfo[k].Distance = distance
 	}
 }
