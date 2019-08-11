@@ -1,0 +1,30 @@
+os:
+  - linux
+
+language: go
+
+go:
+  - 1.12.x
+
+env:
+  global:
+    - GOTFLAGS="-race"
+  matrix:
+    - BUILD_DEPTYPE=gomod
+
+# disable travis install
+install:
+  - true
+
+cache:
+  directories:
+    - $GOPATH/pkg/mod
+    - $HOME/.cache/go-build
+
+notifications:
+  email: false
+
+script:
+  - echo "start to build and test speedtest."
+  - make linux
+  - echo "finish"
