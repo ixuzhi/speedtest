@@ -42,7 +42,7 @@ func IsExist(f string) bool {
 	return err == nil || os.IsExist(err)
 }
 func main() {
-	var FileName string = "servers.dat"
+	var FileName = "servers.dat"
 	var data []byte
 	var err error
 	if IsExist(FileName) {
@@ -74,7 +74,7 @@ func main() {
 			fmt.Println(err)
 			return
 		} else {
-			ioutil.WriteFile("server.dat", data, 0755)
+			ioutil.WriteFile(FileName, data, 0755)
 			fmt.Println("ok")
 		}
 	}

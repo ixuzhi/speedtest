@@ -27,15 +27,16 @@ type ServerList struct {
 }
 
 type ServerInfo struct {
-	Url     string  `xml:"url,attr"`
-	Lat     float64 `xml:"lat,attr"`
-	Lon     float64 `xml:"lon,attr"`
-	Name    string  `xml:"name,attr"`
-	Country string  `xml:"country,attr"`
-	Cc      string  `xml:"cc,attr"`
-	Sponsor string  `xml:"sponsor,attr"`
-	Id      string  `xml:"id,attr"`
-	HostUrl string  `xml:"host,attr"`
+	Url      string  `xml:"url,attr"`
+	Lat      float64 `xml:"lat,attr"`
+	Lon      float64 `xml:"lon,attr"`
+	Name     string  `xml:"name,attr"`
+	Country  string  `xml:"country,attr"`
+	Cc       string  `xml:"cc,attr"`
+	Sponsor  string  `xml:"sponsor,attr"`
+	Id       string  `xml:"id,attr"`
+	HostUrl  string  `xml:"host,attr"`
+	Distance float64
 }
 
 func IsExist(f string) bool {
@@ -45,7 +46,7 @@ func IsExist(f string) bool {
 }
 func GetSpeedTestServersList() (ServerList, error) {
 	var ServersInfo ServerList
-	var FileName = "speedTestServers.dat"
+	var FileName = "./speedTestServers.dat"
 	var data []byte
 	var err error
 	if IsExist(FileName) {
@@ -79,7 +80,7 @@ func GetSpeedTestServersList() (ServerList, error) {
 			//fmt.Println(err)
 			return ServersInfo, errors.New(err.Error())
 		} else {
-			ioutil.WriteFile("server.dat", data, 0755)
+			ioutil.WriteFile(FileName, data, 0755)
 			fmt.Println("ok")
 		}
 	}
@@ -108,6 +109,6 @@ func (servers *ServerList) GetClosestSpeedTestServers(clientinfo ClientInfo) {
 			ψ: v.Lon, // longitude, radians
 		}
 		distance := hsDist(latLon, latLonTestServer)
-		fmt.Println(k, distance)
+		servers.ServersInfo[k].Distance = distance
 	}
 }
