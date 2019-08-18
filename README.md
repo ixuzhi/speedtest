@@ -45,6 +45,6 @@ go run v0/speedtestHttpDownload.go
 go run v0/speedtestHttpUpload.go
 ```
 
-[goland how to download and upload](https://progolang.com/how-to-download-files-in-go/)
-[speedtest download](https://github.com/surol/speedtest-cli/blob/master/speedtest/download.go#L18)
-[speedtest upload](https://github.com/surol/speedtest-cli/blob/master/speedtest/upload.go#L46)
+[goland how to download and upload](https://progolang.com/how-to-download-files-in-go/)  
+[speedtest download](https://github.com/surol/speedtest-cli/blob/master/speedtest/download.go#L18)  
+[speedtest upload](https://github.com/surol/speedtest-cli/blob/master/speedtest/upload.go#L46)  

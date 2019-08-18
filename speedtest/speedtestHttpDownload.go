@@ -30,14 +30,12 @@ func SpeedTestHttpDownload(url string, size uint64) (float64, error) {
 	}
 	resp, err := client.Do(req)
 	if err != nil {
-		//fmt.Println(err)
 		return 0, errors.New(err.Error())
 	}
 	defer resp.Body.Close()
 
 	data, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		//fmt.Println(err)
 		return 0, errors.New(err.Error())
 	}
 	timeLapse := time.Since(timeStart)

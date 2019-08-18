@@ -25,14 +25,12 @@ func SpeedTestHttpUpload(url string, size uint64) (float64, error) {
 	postData := make([]byte, uploadSize)
 	dataSize, err := rand.Read(postData)
 	if err != nil {
-		//fmt.Println(err, dataSize)
 		return 0, errors.New(err.Error())
 	}
 
 	timeStart := time.Now()
 	req, err := http.NewRequest("POST", uploadUrl, bytes.NewReader(postData))
 	if err != nil {
-		//fmt.Println(err)
 		return 0, errors.New(err.Error())
 	}
 	client := http.Client{
@@ -40,17 +38,14 @@ func SpeedTestHttpUpload(url string, size uint64) (float64, error) {
 	}
 	resp, err := client.Do(req)
 	if err != nil {
-		//fmt.Println(err)
 		return 0, errors.New(err.Error())
 	}
 	defer resp.Body.Close()
 
 	_, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
-		//fmt.Println(err)
 		return 0, errors.New(err.Error())
 	}
-	//fmt.Println("recv:", string(data))
 	timeLapse := time.Since(timeStart)
 	timeCost := float64(timeLapse)
 	speed := float64(dataSize) * 8 * float64(time.Second) / float64(timeCost) / 1000 / 1000
