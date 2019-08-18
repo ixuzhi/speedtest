@@ -14,6 +14,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	speedtest.GetClientInfo()
 	fmt.Printf("%+v\n", clientInfo)
 	var Servers speedtest.ServerList
 	Servers, err = speedtest.GetSpeedTestServersList()
