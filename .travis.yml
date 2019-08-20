@@ -24,7 +24,10 @@ cache:
 notifications:
   email: false
 
+#go_import_path: github.com/google/uuid
+
 script:
+  - go get -v -t -d ./...
   - echo "start to build and test speedtest."
   - bash build.sh run_linux
   - echo "finish"
