@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	var testServerLen int64 = 1
 	var clientInfo speedtest.ClientInfo
 	var dataSize uint64 = 2500000
 	fmt.Println("speedtest init.")
@@ -35,10 +36,10 @@ func main() {
 		return
 	}
 
-	for k, v := range Servers.ServersInfo[0:10] {
+	for k, v := range Servers.ServersInfo[0:testServerLen] {
 		fmt.Printf("|%-4d|%-10.4f|%-10.4f|%-30s\n", k, v.Latency*1000, v.Distance, v.HostUrl)
 	}
-	for k, v := range Servers.ServersInfo[0:10] {
+	for k, v := range Servers.ServersInfo[0:testServerLen] {
 		up, err := speedtest.SpeedTestTcpUpload(v.HostUrl, dataSize)
 		if err != nil {
 			fmt.Println(err)
@@ -46,7 +47,7 @@ func main() {
 		fmt.Printf("|%-4d |Upload tcp:%-6.2f\n%+v\n", k, up, v)
 	}
 
-	for k, v := range Servers.ServersInfo[0:10] {
+	for k, v := range Servers.ServersInfo[0:testServerLen] {
 		up, err := speedtest.SpeedTestTcpDownload(v.HostUrl, dataSize)
 		if err != nil {
 			fmt.Println(err)
@@ -54,14 +55,14 @@ func main() {
 		fmt.Printf("|%-4d |Download tcp:%-6.2f\n%+v\n", k, up, v)
 	}
 
-	for k, v := range Servers.ServersInfo[0:10] {
+	for k, v := range Servers.ServersInfo[0:testServerLen] {
 		up, err := speedtest.SpeedTestHttpDownload(v.HostUrl, dataSize)
 		if err != nil {
 			fmt.Println(err)
 		}
 		fmt.Printf("|%-4d |Download http:%-6.2f\n%+v\n", k, up, v)
 	}
-	for k, v := range Servers.ServersInfo[0:10] {
+	for k, v := range Servers.ServersInfo[0:testServerLen] {
 		up, err := speedtest.SpeedTestHttpUpload(v.HostUrl, dataSize)
 		if err != nil {
 			fmt.Println(err)

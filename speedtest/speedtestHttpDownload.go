@@ -3,6 +3,7 @@ package speedtest
 import (
 	"errors"
 	"fmt"
+	"github.com/google/uuid"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -19,7 +20,7 @@ https://github.com/surol/speedtest-cli/blob/master/speedtest/download.go#L92
 */
 func SpeedTestHttpDownload(url string, size uint64) (float64, error) {
 	//var url = "https://vipspeedtest1.wuhan.net.cn:8080/download?size=25000000"
-	downloadUrl := fmt.Sprintf("http://%s/download?size=%d", url, size)
+	downloadUrl := fmt.Sprintf("http://%s/download?nocache=%s&size=%d", url, uuid.New(), size)
 	timeStart := time.Now()
 	req, err := http.NewRequest("GET", downloadUrl, nil)
 	if err != nil {
