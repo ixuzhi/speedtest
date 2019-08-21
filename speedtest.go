@@ -6,37 +6,25 @@ import (
 	"github.com/ixuzhi/speedtest/speedtest"
 )
 
-func main() {
-	var testServerLen int64 = 1
-	var clientInfo speedtest.ClientInfo
-	var dataSize uint64 = 2500000
-	fmt.Println("speedtest init.")
-	speedtest.EnvInfo()
-	clientInfo, err := speedtest.GetIPAndLatLon()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	speedtest.GetClientInfo()
-	fmt.Printf("%+v\n", clientInfo)
+var (
+	dataSize      uint64 = 2500000
+	Servers       speedtest.ServerList
+	testServerLen int64 = 1
+	clientInfo    speedtest.ClientInfo
+)
 
-	var Servers speedtest.ServerList
-	Servers, err = speedtest.GetSpeedTestServersList()
-	if err != nil {
-		fmt.Println("speedtest.GetSpeedTestServersList:" + err.Error())
-		return
-	} else {
-		fmt.Println("len:", len(Servers.ServersInfo))
-	}
-
+func getspeed() {
 	if len(Servers.ServersInfo) > 0 {
 		Servers.GetClosestSpeedTestServers(clientInfo)
+		for k, v := range Servers.ServersInfo[0:10] {
+			fmt.Printf("|111:%-4d|%-10.4f|%-10.4f|%-30s\n", k, v.Latency*1000, v.Distance, v.HostUrl)
+		}
 	} else {
 		fmt.Println("len Servers.ServersInfo ==0")
 		return
 	}
 
-	for k, v := range Servers.ServersInfo[0:testServerLen] {
+	for k, v := range Servers.ServersInfo[0:10] {
 		fmt.Printf("|%-4d|%-10.4f|%-10.4f|%-30s\n", k, v.Latency*1000, v.Distance, v.HostUrl)
 	}
 	for k, v := range Servers.ServersInfo[0:testServerLen] {
@@ -69,4 +57,61 @@ func main() {
 		}
 		fmt.Printf("|%-4d |Upload http:%-6.2f\n%+v\n", k, up, v)
 	}
+}
+
+func getspeed2() {
+
+	speedtestDotNetServers := speedtest.GetSpeedTestServersList_speedtest_dotnet()
+	if speedtestDotNetServers == nil {
+		return
+	} else {
+		for k, v := range speedtestDotNetServers[0:len(speedtestDotNetServers)] {
+			up, err := speedtest.SpeedTestTcpUpload(v.Host, dataSize)
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Printf("|%-4d |Upload tcp:%-6.2f\n%+v\n", k, up, v)
+
+			tcpDownload, err := speedtest.SpeedTestTcpDownload(v.Host, dataSize)
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Printf("|%-4d |Download tcp:%-6.2f\n%+v\n", k, tcpDownload, v)
+
+			httpDownload, err := speedtest.SpeedTestHttpDownload(v.Host, dataSize)
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Printf("|%-4d |Download http:%-6.2f\n%+v\n", k, httpDownload, v)
+
+			httpUpload, err := speedtest.SpeedTestHttpUpload(v.Host, dataSize)
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Printf("|%-4d |Upload http:%-6.2f\n%+v\n", k, httpUpload, v)
+		}
+	}
+}
+
+func main() {
+	var err error
+	fmt.Println("speedtest init.")
+	speedtest.EnvInfo()
+	clientInfo, err = speedtest.GetIPAndLatLon()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	speedtest.GetClientInfo()
+	fmt.Printf("%+v\n", clientInfo)
+
+	Servers, err = speedtest.GetSpeedTestServersList()
+	if err != nil {
+		fmt.Println("speedtest.GetSpeedTestServersList:" + err.Error())
+		return
+	} else {
+		fmt.Println("len:", len(Servers.ServersInfo))
+	}
+	getspeed()
+	getspeed2()
 }

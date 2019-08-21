@@ -6,6 +6,7 @@ import (
 	"github.com/google/uuid"
 	"io/ioutil"
 	"net/http"
+	"runtime"
 	"time"
 )
 
@@ -26,6 +27,8 @@ func SpeedTestHttpDownload(url string, size uint64) (float64, error) {
 	if err != nil {
 		return 0, errors.New(err.Error())
 	}
+	userAgent := fmt.Sprintf("Mozilla/5.0 (%s; %s; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36", "linux", runtime.GOOS)
+	req.Header.Set("User-Agent", userAgent)
 	client := http.Client{
 		Timeout: time.Second * 60,
 	}

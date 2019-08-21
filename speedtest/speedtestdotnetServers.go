@@ -24,7 +24,7 @@ type SpeedTestDotNetServerInfo struct {
 }
 
 func GetSpeedTestServersList_speedtest_dotnet() []SpeedTestDotNetServerInfo {
-	ipUrl := "https://www.speedtest.net/api/js/servers?engine=js&https_functional=1&limit=5"
+	ipUrl := "https://www.speedtest.net/api/js/servers?engine=js&https_functional=1&limit=1"
 	req, err := http.NewRequest("GET", ipUrl, nil)
 	if err != nil {
 		return nil
@@ -50,11 +50,5 @@ func GetSpeedTestServersList_speedtest_dotnet() []SpeedTestDotNetServerInfo {
 
 	}
 	fmt.Println(len(servers))
-	fmt.Println(servers)
 	return servers
 }
-
-//
-//func main() {
-//	GetSpeedTestServersList_speedtest_dotnet()
-//}
