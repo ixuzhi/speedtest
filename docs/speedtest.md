@@ -13,13 +13,13 @@ https://rosettacode.org/wiki/Haversine_formula
 https://rosettacode.org/wiki/Haversine_formula#Go  
 
 ## how to select speedtest server，calc latency
-[Reverse Engineering the Speedtest.net Protocol](https://gist.github.com/sdstrowes/411fca9d900a846a704f68547941eb97)
+[Reverse Engineering the Speedtest.net Protocol](https://gist.github.com/sdstrowes/411fca9d900a846a704f68547941eb97)  
 
-[reverse_engineering_the_speedtest_net_protocol](https://web.archive.org/web/20141216073338/https://gkbrk.com/blog/read?name=reverse_engineering_the_speedtest_net_protocol)
+[reverse_engineering_the_speedtest_net_protocol](https://web.archive.org/web/20141216073338/https://gkbrk.com/blog/read?name=reverse_engineering_the_speedtest_net_protocol)  
 
-[How does the test itself work? How is the result calculated?](https://support.speedtest.net/hc/en-us/articles/203845400-How-does-the-test-itself-work-How-is-the-result-calculated-)
+[How does the test itself work? How is the result calculated?](https://support.speedtest.net/hc/en-us/articles/203845400-How-does-the-test-itself-work-How-is-the-result-calculated-)  
 
-http://www.speedtest.net/api/embed/trial/config.php
+http://www.speedtest.net/api/embed/trial/config.php  
 
 ```
 1. select speedtest server by https://www.speedtest.net/speedtest-servers.php

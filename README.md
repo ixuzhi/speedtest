@@ -60,8 +60,9 @@ go run v0/speedtestHttpUpload.go
 ```
 
 ## Reference github.com
+[speedtest faq](https://www.speedtest.net/about/knowledge/faq)  
 [golang go-speedtest](https://github.com/sivel/go-speedtest/blob/master/speedtest.go)  
-[python speedtest-cli](https://github.com/sivel/speedtest-cli) 
+[python speedtest-cli](https://github.com/sivel/speedtest-cli)  
 
 [goland how to download and upload](https://progolang.com/how-to-download-files-in-go/)  
 [speedtest download](https://github.com/surol/speedtest-cli/blob/master/speedtest/download.go#L18)  
